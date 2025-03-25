@@ -19,15 +19,28 @@ const productsJSON = JSON.parse(
 // Get all products
 router.get("/", async (req, res) => {
   try {
-    //! DONT USE IN PRODUCTION get products from json file
-    res.json(productsJSON);
-    return;
+    const products = await Product.find();
+    if (!products || products.length === 0) {
+      return res.json(productsJSON)
+    }
+    return res.json(products);
   } catch (error) {
+    console.warn("Error in getting products", error)
     res.status(500).json({ error: error.message });
   }
 });
 
 //TODO Get single product
+router.get("/:id", async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.id);
+    if (!product)
+      return res.status(404).json({error: "Produkten hittades inte!"})
+    res.json(product);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 
 // Create product (admin only)
 router.post("/", adminAuth, async (req, res) => {
@@ -41,7 +54,30 @@ router.post("/", adminAuth, async (req, res) => {
 });
 
 //TODO Update product (admin only)
+router.put("/:productId", async (req, res) => {
+  try {
+    const updatedProduct = await Product.findByIdAndUpdate(req.params.productId, req.body, { new: true, runValidators: true });
+    if (!updatedProduct) {
+      return res.status(404).json({ error: "Produkten hittades inte!" });
+    }
+    res.json(updatedProduct);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
 
 //TODO Delete product (admin only)
+router.delete("/:id", async (req, res) => {
+  try {
+    const deletedProduct = await Product.findByIdAndDelete(req.params.id);
+    if (!deletedProduct) {
+      return res.status(404).json({ error: "Produkten hittades inte!" });
+    }
+    res.json({ message: "Produkten har tagits bort!" });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
 
 export default router;
