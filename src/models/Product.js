@@ -1,7 +1,6 @@
 import mongoose from 'mongoose';
 
 const productSchema = new mongoose.Schema({
-
   "product-title": { 
     type: String, 
     required: true 
