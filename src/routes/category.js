@@ -1,6 +1,6 @@
 /*Jonatans react som han visade på lektionen*/
 
-const express = require("express");
+/*const express = require("express");
 const router = express.Router();
 const Category = require("../models/category.model");
 
@@ -82,3 +82,6 @@ router.delete("/admin/all", async (req, res) => {
     }
 })
 module.exports = router;
+*/
+
+

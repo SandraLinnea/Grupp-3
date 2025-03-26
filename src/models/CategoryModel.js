@@ -68,5 +68,5 @@ const categorySchema = new mongoose.Schema({
 });
 
 // Skapa Category-modellen baserat på schema
-export default mongoose.model('Category', categorySchema);
+export default mongoose.model('CategoryModel', categorySchema);
 // Exportera Category-modellen för att kunna använda den i andra filer
