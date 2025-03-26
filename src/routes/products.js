@@ -19,13 +19,11 @@ const productsJSON = JSON.parse(
 // Get all products
 router.get("/", async (req, res) => {
   try {
-    const products = await Product.find();
-    if (!products || products.length === 0) {
-      return res.json(productsJSON)
-    }
-    return res.json(products);
+    const dbProducts = await Product.find();
+    const allProducts = [...productsJSON, ...dbProducts];
+    res.json(allProducts);
   } catch (error) {
-    console.warn("Error in getting products", error)
+    console.warn("Error in getting products", error);
     res.status(500).json({ error: error.message });
   }
 });
@@ -43,7 +41,7 @@ router.get("/:id", async (req, res) => {
 });
 
 // Create product (admin only)
-router.post("/", adminAuth, async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const product = new Product(req.body);
     await product.save();
@@ -78,6 +76,5 @@ router.delete("/:id", async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 });
-
 
 export default router;

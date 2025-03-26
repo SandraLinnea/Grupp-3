@@ -14,9 +14,13 @@ const productSchema = new mongoose.Schema({
   },
   "product-producer": { 
     type: String },
-  price: { 
+  "product-price": { 
     type: Number, 
     required: true 
+  },
+  image: {
+    type: String,
+    default: ''
   },
   category: { 
     type: String 
