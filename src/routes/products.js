@@ -17,11 +17,9 @@ const productsJSON = JSON.parse(
 );
 
 // Get all products
-router.get("/", async (req, res) => {
+router.get("/products", async (req, res) => {
   try {
-    const dbProducts = await Product.find();
-    const allProducts = [...productsJSON, ...dbProducts];
-    res.json(allProducts);
+    res.json(productsJSON);
   } catch (error) {
     console.warn("Error in getting products", error);
     res.status(500).json({ error: error.message });
