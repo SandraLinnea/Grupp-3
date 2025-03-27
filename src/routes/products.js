@@ -19,13 +19,10 @@ const productsJSON = JSON.parse(
 // Get all products
 router.get("/", async (req, res) => {
   try {
-    const products = await Product.find();
-    if (!products || products.length === 0) {
-      return res.json(productsJSON)
-    }
-    return res.json(products);
+    //! DONT USE IN PRODUCTION get products from json file
+    res.json(productsJSON);
+    return;
   } catch (error) {
-    console.warn("Error in getting products", error)
     res.status(500).json({ error: error.message });
   }
 });
@@ -43,7 +40,7 @@ router.get("/:id", async (req, res) => {
 });
 
 // Create product (admin only)
-router.post("/", async (req, res) => {
+router.post("/", adminAuth, async (req, res) => {
   try {
     const product = new Product(req.body);
     await product.save();
@@ -54,7 +51,7 @@ router.post("/", async (req, res) => {
 });
 
 //TODO Update product (admin only)
-router.put("/:productId", async (req, res) => {
+router.put("/:productId", adminAuth, async (req, res) => {
   try {
     const updatedProduct = await Product.findByIdAndUpdate(req.params.productId, req.body, { new: true, runValidators: true });
     if (!updatedProduct) {
@@ -67,7 +64,7 @@ router.put("/:productId", async (req, res) => {
 });
 
 //TODO Delete product (admin only)
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", adminAuth, async (req, res) => {
   try {
     const deletedProduct = await Product.findByIdAndDelete(req.params.id);
     if (!deletedProduct) {
