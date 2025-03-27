@@ -1,20 +1,20 @@
 import mongoose from 'mongoose';
 
 const productSchema = new mongoose.Schema({
-  "product-title": { 
+  title: { 
     type: String, 
     required: true 
   },
-  "product-description": { 
+  description: { 
     type: String ,
     default: ''
   },
-  "product-weight": { 
+  weight: { 
     type: Number 
   },
-  "product-producer": { 
+  producer: { 
     type: String },
-  "product-price": { 
+  price: { 
     type: Number, 
     required: true 
   },
