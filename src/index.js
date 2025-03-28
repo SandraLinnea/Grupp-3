@@ -4,8 +4,11 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import authRoutes from './routes/auth.js';
 import productRoutes from './routes/products.js';
+<<<<<<< HEAD
 import categoryRoutes from './routes/categoryRoute.js';
 
+=======
+>>>>>>> afd54993b9afea2313e7ab3215d4bb6d5ebb8dca
 dotenv.config();
 
 const app = express();

@@ -1,25 +1,31 @@
 import mongoose from 'mongoose';
 
 const productSchema = new mongoose.Schema({
-  "product-title": { 
+  title: { 
     type: String, 
     required: true 
   },
-  "product-description": { 
+  description: { 
     type: String ,
     default: ''
   },
-  "product-weight": { 
+  weight: { 
     type: Number 
   },
-  "product-producer": { 
+  producer: { 
     type: String },
   price: { 
     type: Number, 
     required: true 
   },
-  category: { 
-    type: String 
+  image: {
+    type: String,
+    default: ''
+  },
+ category: {
+   type: mongoose.Schema.Types.ObjectId,
+   ref: 'Category',
+   required: true
   },
 }, { 
   timestamps: true 
