@@ -9,7 +9,7 @@ export const getCategories = async (req, res) => {
     // const categories = await Category.find();
     
     // För att använda mockad data under utveckling:
-    const categories = mockCategories;
+    const categories = await Category.find();
     
     res.json(categories); // Skickar tillbaka kategorierna till klienten
   } catch (error) {
