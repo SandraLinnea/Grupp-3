@@ -2,13 +2,13 @@ import mongoose from 'mongoose'; // Importera mongoose för att interagera med M
 
 // Definiera schema för Category
 const categorySchema = new mongoose.Schema({
-  "category-name": { // Fält för att lagra kategorinamn (t.ex. "Skafferi", "Drycker")
+  name: { // Fält för att lagra kategorinamn (t.ex. "Skafferi", "Drycker")
     type: String, // Typen är String eftersom vi förväntar oss ett textvärde
     required: true, // Kategorin måste ha ett namn
     unique: true, // Namnet på kategorin ska vara unikt
     trim: true, // Ta bort eventuella mellanslag före och efter namnet
   },
-  "category-description": { // Fält för en beskrivning av kategorin
+  description: { // Fält för en beskrivning av kategorin
     type: String, // Fältet är av typen String
     default: '', // Om ingen beskrivning anges, sätt standardvärdet till en tom sträng
   },
