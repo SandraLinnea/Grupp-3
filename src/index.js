@@ -37,6 +37,23 @@ app.get('/api', (req, res) => {
   });
 });
 
+import dataMigrationRouterModule from "./migration/data.migration.route_module.js";
+import Category from "./models/CategoryModel.js";
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+
+// Skapa dirname manuellt för ES-moduler
+const _filename = fileURLToPath(import.meta.url);
+const _dirname = dirname(_filename);
+
+// Rätt dataPath
+const dataPath = join(_dirname, "data", "categories.json");
+console.log("Datapath", dataPath)
+app.use(
+  "/api/data-migration/categories",
+  dataMigrationRouterModule(Category, dataPath)
+);
+
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);

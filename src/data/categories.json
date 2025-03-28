@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Skafferi",
+    "description": "Allt du behöver för ditt skafferi",
+    "products": []
+  },
+  {
+    "name": "Drycker",
+    "description": "Kalla drycker för alla smaker",
+    "products": []
+  },
+  {
+    "name": "Bageri",
+    "description": "Kalla drycker för alla smaker",
+    "products": []
+  },
+  {
+    "name": "Hem & Hushåll",
+    "description": "Kalla drycker för alla smaker",
+    "products": []
+  },
+  {
+    "name": "Snacks & Godis",
+    "description": "Kalla drycker för alla smaker",
+    "products": []
+  }
+]
