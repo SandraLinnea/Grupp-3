@@ -19,10 +19,13 @@ const productsJSON = JSON.parse(
 // Get all products
 router.get("/", async (req, res) => {
   try {
-    //! DONT USE IN PRODUCTION get products from json file
-    res.json(productsJSON);
-    return;
+    const products = await Product.find();
+    if (!products || products.length === 0) {
+      return res.json(productsJSON)
+    }
+    return res.json(products);
   } catch (error) {
+    console.warn("Error in getting products", error)
     res.status(500).json({ error: error.message });
   }
 });
