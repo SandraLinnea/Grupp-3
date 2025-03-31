@@ -51,7 +51,7 @@ router.post("/", adminAuth, async (req, res) => {
 });
 
 //TODO Update product (admin only)
-router.put("/:productId", adminAuth, async (req, res) => {
+/* router.put("/:productId", adminAuth, async (req, res) => {
   try {
     const updatedProduct = await Product.findByIdAndUpdate(req.params.productId, req.body, { new: true, runValidators: true });
     if (!updatedProduct) {
@@ -61,7 +61,7 @@ router.put("/:productId", adminAuth, async (req, res) => {
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
-});
+}); */
 
 //TODO Delete product (admin only)
 router.delete("/:id", adminAuth, async (req, res) => {
