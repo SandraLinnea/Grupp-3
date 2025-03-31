@@ -54,7 +54,7 @@ router.post("/", adminAuth, async (req, res) => {
 });
 
 //TODO Update product (admin only)
-router.put("/products/:id",adminAuth, async (req, res) => {
+/* router.put("/products/:id",adminAuth, async (req, res) => {
   const {id} = req.params
   const body = req.body
   const productData = {
@@ -73,7 +73,7 @@ router.put("/products/:id",adminAuth, async (req, res) => {
           error: "Product not found"
       })
   }
-} )
+} ) */
 
 //TODO Delete product (admin only)
 router.delete("/:id", adminAuth, async (req, res) => {
