@@ -6,14 +6,15 @@ const productSchema = new mongoose.Schema({
     required: true 
   },
   description: { 
-    type: String ,
+    type: String,
     default: ''
   },
   weight: { 
-    type: Number 
+    type: String 
   },
   producer: { 
-    type: String },
+    type: String 
+  },
   price: { 
     type: Number, 
     required: true 
@@ -23,14 +24,9 @@ const productSchema = new mongoose.Schema({
     default: ''
   },
  category: {
-<<<<<<< HEAD
    type: String,
    required: true
-=======
-    type: String, 
-    required: true 
->>>>>>> 25ca2da127e443e9b65d045b11a043dda7e7b53e
-  },
+},
 }, { 
   timestamps: true 
 });
