@@ -20,15 +20,14 @@ const productsJSON = JSON.parse(
 router.get("/", async (req, res) => {
   try {
     const products = await Product.find();
-<<<<<<< HEAD
     if (!products || products.length === 0) {
       return res.json(productsJSON)
     }
     return res.json(products);
-=======
-    res.json(products);
-    return;
->>>>>>> 25ca2da127e443e9b65d045b11a043dda7e7b53e
+
+/*     res.json(products);
+    return */;
+
   } catch (error) {
     console.warn("Error in getting products", error)
     res.status(500).json({ error: error.message });
@@ -59,7 +58,6 @@ router.post("/", adminAuth, async (req, res) => {
 });
 
 //TODO Update product (admin only)
-<<<<<<< HEAD
 /* router.put("/products/:id",adminAuth, async (req, res) => {
   const {id} = req.params
   const body = req.body
@@ -80,7 +78,7 @@ router.post("/", adminAuth, async (req, res) => {
       })
   }
 } ) */
-=======
+
 /* router.put("/:productId", adminAuth, async (req, res) => {
   try {
     const updatedProduct = await Product.findByIdAndUpdate(req.params.productId, req.body, { new: true, runValidators: true });
@@ -92,7 +90,6 @@ router.post("/", adminAuth, async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 }); */
->>>>>>> 25ca2da127e443e9b65d045b11a043dda7e7b53e
 
 //TODO Delete product (admin only)
 router.delete("/:id", adminAuth, async (req, res) => {
