@@ -11,6 +11,7 @@ export const adminAuth = async (req, res, next) => {
 };
 
 
+<<<<<<< HEAD
 
 //OBS! Glöm inte att lägga till JWT_SECRET i .env filen
 
@@ -61,3 +62,7 @@ export const adminAuth = async (req, res, next) => {
     res.status(401).json({ message: 'Invalid token', error: error.message });
   }
 }; */
+=======
+import jwt from 'jsonwebtoken';
+
+>>>>>>> 25ca2da127e443e9b65d045b11a043dda7e7b53e

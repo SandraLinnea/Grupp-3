@@ -23,8 +23,13 @@ const productSchema = new mongoose.Schema({
     default: ''
   },
  category: {
+<<<<<<< HEAD
    type: String,
    required: true
+=======
+    type: String, 
+    required: true 
+>>>>>>> 25ca2da127e443e9b65d045b11a043dda7e7b53e
   },
 }, { 
   timestamps: true 
