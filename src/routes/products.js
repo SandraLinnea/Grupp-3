@@ -20,12 +20,13 @@ const productsJSON = JSON.parse(
 router.get("/", async (req, res) => {
   try {
     const products = await Product.find();
+
     if (!products || products.length === 0) {
       return res.json(productsJSON)
     }
     return res.json(products);
 
-/*     res.json(products);
+/*  res.json(products);
     return */;
 
   } catch (error) {
@@ -58,6 +59,7 @@ router.post("/", adminAuth, async (req, res) => {
 });
 
 //TODO Update product (admin only)
+
 /* router.put("/products/:id",adminAuth, async (req, res) => {
   const {id} = req.params
   const body = req.body
