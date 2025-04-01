@@ -17,23 +17,15 @@ const productsJSON = JSON.parse(
 );
 
 // Get all products
-router.get("/", async (req, res) => {
+export const getAllProducts = async (req, res) => {
   try {
-    const products = await Product.find();
-
-    if (!products || products.length === 0) {
-      return res.json(productsJSON)
-    }
-    return res.json(products);
-
-/*  res.json(products);
-    return */;
-
+    const products = await Product.find(); 
+    res.status(200).json(products);
   } catch (error) {
-    console.warn("Error in getting products", error)
+    console.error(error)
     res.status(500).json({ error: error.message });
   }
-});
+};
 
 //TODO Get single product
 router.get("/:id", async (req, res) => {
@@ -59,17 +51,7 @@ router.post("/", adminAuth, async (req, res) => {
 });
 
 //TODO Update product (admin only)
-router.put("/:productId", adminAuth, async (req, res) => {
-  try {
-    const updatedProduct = await Product.findByIdAndUpdate(req.params.productId, req.body, { new: true, runValidators: true });
-    if (!updatedProduct) {
-      return res.status(404).json({ error: "Produkten hittades inte!" });
-    }
-    res.json(updatedProduct);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-});
+
 
 //TODO Delete product (admin only)
 router.delete("/:id", adminAuth, async (req, res) => {
