@@ -17,7 +17,7 @@ const productsJSON = JSON.parse(
 );
 
 // Get all products
-router.get("/products", async (req, res) => {
+router.get("/", async (res) => {
   try {
     const products = await Product.find();
     if (!products || products.length === 0) {
@@ -29,8 +29,6 @@ router.get("/products", async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
-
-
 
 //TODO Get single product
 router.get("/:id", async (req, res) => {
