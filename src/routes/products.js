@@ -20,9 +20,6 @@ const productsJSON = JSON.parse(
 router.get("/", async (res) => {
   try {
     const products = await Product.find();
-    if (!products || products.length === 0) {
-      return res.status(404).json({ message: "Inga produkter hittades" });
-    }
     res.status(200).json(products);
   } catch (error) {
     console.error("Fel vid hämtning av produkter", error);
