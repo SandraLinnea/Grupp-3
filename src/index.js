@@ -31,11 +31,39 @@ app.get('/api', (req, res) => {
         "POST /api/products": "Create a new product (Admin only)",
         "PUT /api/products/:id": "Update a product (Admin only)",
         "DELETE /api/products/:id": "Delete a product (Admin only)"
+      },
+      categories: {
+        "GET /api/categories": "Get all categories"
       }
     },
     authentication: "Use Bearer token in Authorization header for protected routes"
   });
 });
+
+import dataMigrationRouterModule from "./migration/data.migration.route_module.js";
+import Category from "./models/CategoryModel.js";
+import Product from "./models/Product.js";
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+
+// Skapa dirname manuellt för ES-moduler
+const _filename = fileURLToPath(import.meta.url);
+const _dirname = dirname(_filename);
+
+// Rätt dataPath
+const dataPathCategories = join(_dirname, "data", "categories.json");
+const dataPathProducts = join(_dirname, "data", "products.json");
+console.log("Datapath", dataPathCategories)
+app.use(
+  "/api/data-migration/categories",
+  dataMigrationRouterModule(Category, dataPathCategories)
+);
+
+app.use(
+  "/api/data-migration/products",
+  dataMigrationRouterModule(Product, dataPathProducts)
+);
+
 
 // Routes
 app.use('/api/auth', authRoutes);

@@ -1,6 +1,6 @@
 // controllers/categoryController.js
 import Category from '../models/CategoryModel.js';
-import mockCategories from '../mocks/categoryMocks.js';
+// import mockCategories from '../mocks/categoryMocks.js';
 
 // Hämta alla kategorier
 export const getCategories = async (req, res) => {
