@@ -17,15 +17,20 @@ const productsJSON = JSON.parse(
 );
 
 // Get all products
-export const getAllProducts = async (req, res) => {
+router.get("/products", async (req, res) => {
   try {
-    const products = await Product.find(); 
+    const products = await Product.find();
+    if (!products || products.length === 0) {
+      return res.status(404).json({ message: "Inga produkter hittades" });
+    }
     res.status(200).json(products);
   } catch (error) {
-    console.error(error)
+    console.error("Error in getting products", error);
     res.status(500).json({ error: error.message });
   }
-};
+});
+
+
 
 //TODO Get single product
 router.get("/:id", async (req, res) => {
