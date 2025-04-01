@@ -11,7 +11,7 @@ router.post('/register', async (req, res) => {
     const { email, password, isAdmin = false } = req.body;
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      return res.status(400).json({ error: "User unable to register" });
+      return res.status(400).json({ error: "Det gick inte att registrera användaren" });
     }
     const user = new User({ email, password, isAdmin });
     await user.save();
@@ -38,11 +38,11 @@ router.post('/login', async (req, res) => {
   try {
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(401).json({ error: 'Felaktig e-post eller lösenord' });
+      return res.status(401).json({ error: 'Ogiltig inloggning' });
     }
     const isPasswordCorrect = await bcrypt.compare(password, user.password);
     if (!isPasswordCorrect) {
-      return res.status(401).json({ error: 'Felaktig e-post eller lösenord' });
+      return res.status(401).json({ error: 'Ogiltig inloggning' });
     }
     const token = jwt.sign(
       { userId: user._id, isAdmin: user.isAdmin },
