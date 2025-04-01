@@ -13,10 +13,9 @@ router.post('/register', async (req, res) => {
     if (existingUser) {
       return res.status(400).json({ error: "User unable to register" });
     }
-    const hashedPassword = await bcrypt.hash(password, 10);
-  
-    const user = new User({ email, password: hashedPassword, isAdmin });
+    const user = new User({ email, password, isAdmin });
     await user.save();
+    
     const token = jwt.sign(
       { userId: user._id, isAdmin: user.isAdmin },
       process.env.JWT_SECRET || 'hemlig_nyckel',

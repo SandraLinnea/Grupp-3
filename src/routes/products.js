@@ -59,29 +59,7 @@ router.post("/", adminAuth, async (req, res) => {
 });
 
 //TODO Update product (admin only)
-
-/* router.put("/products/:id",adminAuth, async (req, res) => {
-  const {id} = req.params
-  const body = req.body
-  const productData = {
-      ...body,
-  }
-  delete productData._id 
-  try {
-      const product = await Product.findByIdAndUpdate(id, {$set: productData}, {new: true })
-      if(!product) {
-          throw new Error("Product not found")
-      }
-      res.json(product)
-  } catch(error) {
-      console.warn("Error in updating product", error)
-      res.status(404).json({
-          error: "Product not found"
-      })
-  }
-} ) */
-
-/* router.put("/:productId", adminAuth, async (req, res) => {
+router.put("/:productId", adminAuth, async (req, res) => {
   try {
     const updatedProduct = await Product.findByIdAndUpdate(req.params.productId, req.body, { new: true, runValidators: true });
     if (!updatedProduct) {
@@ -91,7 +69,7 @@ router.post("/", adminAuth, async (req, res) => {
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
-}); */
+});
 
 //TODO Delete product (admin only)
 router.delete("/:id", adminAuth, async (req, res) => {
