@@ -23,7 +23,7 @@ router.get("/products", async (req, res) => {
     if (!products || products.length === 0) {
       return res.status(404).json({ message: "Inga produkter hittades" });
     }
-    return res.status(200).json(products);
+    return res.json(products);
   } catch (error) {
     console.error("Error in getting products", error);
     res.status(500).json({ error: error.message });
