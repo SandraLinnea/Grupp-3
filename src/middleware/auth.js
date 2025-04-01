@@ -11,7 +11,6 @@ export const auth = (req, res, next) => {
     if (!token) {
       throw new Error("No token");
     }
-
     const decryptedToken = jwt.verify(token, process.env.JWT_SECRET);
     req.userId = decryptedToken.userId;
     req.isAdmin = decryptedToken.isAdmin;
