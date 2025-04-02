@@ -2,8 +2,12 @@ import express from 'express';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import User from '../models/User.js';
+import { login, register } from '../controllers/authController.js';
 
 const router = express.Router();
+
+router.post('/register', register);
+router.post('/login', login);
 
 // REGISTER
 router.post('/register', async (req, res) => {
