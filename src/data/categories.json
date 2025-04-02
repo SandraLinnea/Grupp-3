@@ -20,7 +20,7 @@
     {
         "_id": "67e69c654fdc002d822dc0b1",
         "name": "Bageri",
-        "description": "Kalla drycker för alla smaker",
+        "description": "Färskt bröd, bakverk och andra godsaker",
         "products": [],
         "createdAt": "2025-03-28T12:56:05.029Z",
         "updatedAt": "2025-03-28T12:56:05.029Z",
@@ -29,7 +29,7 @@
     {
         "_id": "67e69c654fdc002d822dc0b2",
         "name": "Hem & Hushåll",
-        "description": "Kalla drycker för alla smaker",
+        "description": "Produkter för ett välfungerande hem",
         "products": [],
         "createdAt": "2025-03-28T12:56:05.030Z",
         "updatedAt": "2025-03-28T12:56:05.030Z",
@@ -38,7 +38,7 @@
     {
         "_id": "67e69c654fdc002d822dc0b3",
         "name": "Snacks & Godis",
-        "description": "Kalla drycker för alla smaker",
+        "description": "Söta och salta godsaker för alla stunder",
         "products": [],
         "createdAt": "2025-03-28T12:56:05.030Z",
         "updatedAt": "2025-03-28T12:56:05.030Z",
