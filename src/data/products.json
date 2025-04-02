@@ -141,7 +141,7 @@
     "producer": "Wettex",
     "price": 5.0,
     "image": "https://productimages.motatos.com/MS233598/ms233598_1221-112eb518-bb46-4160-9a92-6072ab55f050.png?tr=w-2034,h-2034,c-at_max,bg-ffffff",
-    "category": "Hem & hushåll"
+    "category": "Hem & Hushåll"
   },
   {
     "title": "Fryspåse 5 L",
@@ -150,7 +150,7 @@
     "producer": "Prima",
     "price": 10.0,
     "image": "https://productimages.motatos.com/MS246146/ms246146_1-5759becf-0666-4a4d-89d7-94d7eaf760a0.png?tr=w-2034,h-2034,c-at_max,bg-ffffff",
-    "category": "Hem & hushåll"
+    "category": "Hem & Hushåll"
   },
   {
     "title": "Avfallspåsar med Drawstring 20 L",
@@ -159,7 +159,7 @@
     "producer": "Ninjaplast",
     "price": 20.0,
     "image": "https://productimages.motatos.com/MS210371/avfallspasar-med-dragsnore-20ljpg-ed10723f-8b62-40e4-a066-8b623a024dd4.jpg?tr=w-2034,h-2034,c-at_max,bg-ffffff",
-    "category": "Hem & hushåll"
+    "category": "Hem & Hushåll"
   },
   {
     "title": "Toalettpapper Comfort 8-pack",
@@ -168,7 +168,7 @@
     "producer": "LOTUS",
     "price": 39.0,
     "image": "https://productimages.motatos.com/MS224715/ms224715_1-c0e74b6a-cf7c-487c-af94-6af77af5e965.png?tr=w-2034,h-2034,c-at_max,bg-ffffff",
-    "category": "Hem & hushåll"
+    "category": "Hem & Hushåll"
   },
   {
     "title": "Bastvätt Tvättmedel Kulör",
@@ -177,7 +177,7 @@
     "producer": "Ocean",
     "price": 120.0,
     "image": "https://productimages.motatos.com/MS242631/ms242631_1-aa6ffc54-e3c1-479c-8357-3212fc6f7cf8.png?tr=w-2034,h-2034,c-at_max,bg-ffffff",
-    "category": "Hem & hushåll"
+    "category": "Hem & Hushåll"
   },
   {
     "title": "Polly Tropical 150g",
@@ -186,7 +186,7 @@
     "producer": "Cloetta",
     "price": 13.0,
     "image": "https://productimages.motatos.com/MS249243/ms249243_1-656f89bf-efa8-4221-a13e-3ab05761459e.png?tr=w-2034,h-2034,c-at_max,bg-ffffff",
-    "category": "Snacks och godis"
+    "category": "Snacks & Godis"
   },
   {
     "title": "Frosty Blueberry Winter Edition",
@@ -195,7 +195,7 @@
     "producer": "Pändy",
     "price": 17.0,
     "image": "https://productimages.motatos.com/MS245682/ms245682_123-b6dfab7c-0b14-4011-8256-4d2396f304cd.png?tr=w-2034,h-2034,c-at_max,bg-ffffff",
-    "category": "Snacks och godis"
+    "category": "Snacks & Godis"
   },
   {
     "title": "Ölkorv Hot Amigo 20g",
@@ -204,7 +204,7 @@
     "producer": "Ridderheims",
     "price": 5.0,
     "image": "https://productimages.motatos.com/MS250321/ms250321_1-f15d5482-19b8-471f-a007-79619b3daad7.png?tr=w-2034,h-2034,c-at_max,bg-ffffff",
-    "category": "Snacks och godis"
+    "category": "Snacks & Godis"
   },
   {
     "title": "Daim Orange Dubbel",
@@ -213,7 +213,7 @@
     "producer": "Daim",
     "price": 9.0,
     "image": "https://productimages.motatos.com/7622210981271/7622210981271-685dffb1-4e35-40a8-adc7-8aaa0693420f.png?tr=w-2034,h-2034,c-at_max,bg-ffffff",
-    "category": "Snacks och godis"
+    "category": "Snacks & Godis"
   },
   {
     "title": "Ahlgrens Bilar",
@@ -222,6 +222,6 @@
     "producer": "Ahlgrens",
     "price": 16.0,
     "image": "https://productimages.motatos.com/MS115936/ms115936_-4b304f76-225f-40fb-ad15-17ccd8b4b86f.png?tr=w-2034,h-2034,c-at_max,bg-ffffff",
-    "category": "Snacks och godis"
+    "category": "Snacks & Godis"
   }
 ]
