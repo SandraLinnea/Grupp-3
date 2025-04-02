@@ -3,7 +3,6 @@
         "_id": "67e69c654fdc002d822dc0af",
         "name": "Skafferi",
         "description": "Allt du behöver för ditt skafferi",
-        "products": [],
         "createdAt": "2025-03-28T12:56:05.028Z",
         "updatedAt": "2025-03-28T12:56:05.028Z",
         "__v": 0
@@ -12,7 +11,6 @@
         "_id": "67e69c654fdc002d822dc0b0",
         "name": "Drycker",
         "description": "Kalla drycker för alla smaker",
-        "products": [],
         "createdAt": "2025-03-28T12:56:05.029Z",
         "updatedAt": "2025-03-28T12:56:05.029Z",
         "__v": 0
@@ -21,7 +19,6 @@
         "_id": "67e69c654fdc002d822dc0b1",
         "name": "Bageri",
         "description": "Färskt bröd, bakverk och andra godsaker",
-        "products": [],
         "createdAt": "2025-03-28T12:56:05.029Z",
         "updatedAt": "2025-03-28T12:56:05.029Z",
         "__v": 0
@@ -30,7 +27,6 @@
         "_id": "67e69c654fdc002d822dc0b2",
         "name": "Hem & Hushåll",
         "description": "Produkter för ett välfungerande hem",
-        "products": [],
         "createdAt": "2025-03-28T12:56:05.030Z",
         "updatedAt": "2025-03-28T12:56:05.030Z",
         "__v": 0
@@ -39,7 +35,6 @@
         "_id": "67e69c654fdc002d822dc0b3",
         "name": "Snacks & Godis",
         "description": "Söta och salta godsaker för alla stunder",
-        "products": [],
         "createdAt": "2025-03-28T12:56:05.030Z",
         "updatedAt": "2025-03-28T12:56:05.030Z",
         "__v": 0
