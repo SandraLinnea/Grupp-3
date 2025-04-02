@@ -38,5 +38,13 @@
         "createdAt": "2025-03-28T12:56:05.030Z",
         "updatedAt": "2025-03-28T12:56:05.030Z",
         "__v": 0
+    },
+    {
+        "_id": "67e69c654fdc002d822dc0b4",
+        "name": "Tom kategori",
+        "description": "KVALIT testar en tom kategori",
+        "createdAt": "2025-03-28T12:56:05.030Z",
+        "updatedAt": "2025-03-28T12:56:05.030Z",
+        "__v": 0
     }
 ]
