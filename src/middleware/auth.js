@@ -1,36 +1,25 @@
-import jwt from 'jsonwebtoken';
+const { verifyAccessToken } = require("../utils/jwt");
 
-/**
- * Endast inloggade användare har tillgång
- */
-export const auth = (req, res, next) => {
+function auth(req, res, next) {
   try {
-    const token = req.cookies?.token;
+    const authHeader = req.headers.authorization;
 
-    if (!token) {
-      return res.status(401).json({ message: 'Ingen token hittades' });
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      console.warn("Ingen eller ogiltig Authorization-header:", authHeader);
+      return res.status(401).json({ message: "Ingen token hittades" });
     }
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const token = authHeader.split(" ")[1];
+    const decoded = verifyAccessToken(token);
 
     req.userId = decoded.userId;
-    req.role = decoded.role; // roll: 'admin' eller 'user'
+    req.isAdmin = decoded.isAdmin;
 
     next();
   } catch (error) {
-    console.warn('Auktoriseringsfel:', error.message);
-    return res.status(401).json({ message: 'Obehörig' });
+    console.warn("Auth error:", error.message);
+    return res.status(401).json({ message: "Inte auktoriserad" });
   }
-};
+}
 
-/**
- * Endast administratörer har tillgång
- */
-export const adminAuth = (req, res, next) => {
-  auth(req, res, () => {
-    if (req.role !== 'admin') {
-      return res.status(403).json({ message: 'Endast administratörer har tillgång' });
-    }
-    next();
-  });
-};
+module.exports = auth;
