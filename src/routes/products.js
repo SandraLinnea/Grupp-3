@@ -17,12 +17,18 @@ const productsJSON = JSON.parse(
 );
 
 // Get all products
-router.get("/", async (res) => {
+
+
+router.get("/", async (req, res) => {
   try {
     const products = await Product.find();
-    res.status(200).json(products);
+    return res.json(products);
+
+/*  res.json(products);
+    return */;
+
   } catch (error) {
-    console.error("Fel vid hämtning av produkter", error);
+    console.warn("Error in getting products", error)
     res.status(500).json({ error: error.message });
   }
 });
