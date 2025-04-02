@@ -17,26 +17,11 @@ const productsJSON = JSON.parse(
 );
 
 // Get all products
-/* router.get("/products", async (req, res) => {
-  try {
-    const products = await Product.find();
-    if (!products || products.length === 0) {
-      return res.status(404).json({ message: "Inga produkter hittades" });
-    }
-    return res.json(products);
-  } catch (error) {
-    console.error("Error in getting products", error);
-    res.status(500).json({ error: error.message });
-  }
-}); */
+
 
 router.get("/", async (req, res) => {
   try {
     const products = await Product.find();
-
-    if (!products || products.length === 0) {
-      return res.json(productsJSON)
-    }
     return res.json(products);
 
 /*  res.json(products);
