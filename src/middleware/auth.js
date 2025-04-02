@@ -1,31 +1,25 @@
-import jwt from "jsonwebtoken";
+const { verifyAccessToken } = require("../utils/jwt");
 
-export const auth = (req, res, next) => {
+function auth(req, res, next) {
   try {
-    const authorization = req.headers.authorization;
-    if (!authorization) {
-      throw new Error("No authorization");
+    const authHeader = req.headers.authorization;
+
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      console.warn("Ingen eller ogiltig Authorization-header:", authHeader);
+      return res.status(401).json({ message: "Ingen token hittades" });
     }
 
-    const token = authorization.split(" ")?.[1];
-    if (!token) {
-      throw new Error("No token");
-    }
-    const decryptedToken = jwt.verify(token, process.env.JWT_SECRET);
-    req.userId = decryptedToken.userId;
-    req.isAdmin = decryptedToken.isAdmin;
+    const token = authHeader.split(" ")[1];
+    const decoded = verifyAccessToken(token);
+
+    req.userId = decoded.userId;
+    req.isAdmin = decoded.isAdmin;
+
     next();
   } catch (error) {
-    console.warn("Error authorizing endpoint:", error.message);
-    return res.status(401).json({ message: "Unauthorized" });
+    console.warn("Auth error:", error.message);
+    return res.status(401).json({ message: "Inte auktoriserad" });
   }
-};
+}
 
-export const adminAuth = (req, res, next) => {
-  auth(req, res, () => {
-    if (!req.isAdmin) {
-      return res.status(403).json({ message: "Admin access only" });
-    }
-    next();
-  });
-};
+module.exports = auth;
