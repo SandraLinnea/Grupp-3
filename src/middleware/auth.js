@@ -21,9 +21,9 @@ function adminAuth(req, res, next) {
 
     next();
   } catch (error) {
-    console.warn("AdminAuth error:", error.message);
-    res.status(401).json({ message: "Inte auktoriserad" });
+    console.warn("Auth error:", error.message);
+    return res.status(401).json({ message: "Inte auktoriserad" });
   }
 }
 
-module.exports = adminAuth;
+module.exports = auth;
