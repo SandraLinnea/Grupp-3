@@ -17,23 +17,15 @@ const productsJSON = JSON.parse(
 );
 
 // Get all products
-
-
 router.get("/", async (req, res) => {
   try {
     const products = await Product.find();
     return res.json(products);
-
-/*  res.json(products);
-    return */;
-
   } catch (error) {
     console.warn("Error in getting products", error)
     res.status(500).json({ error: error.message });
   }
 });
-
-
 
 //TODO Get single product
 router.get("/:id", async (req, res) => {
@@ -59,6 +51,21 @@ router.post("/", adminAuth, async (req, res) => {
 });
 
 //TODO Update product (admin only)
+router.put("/:id", adminAuth, async (req, res) => {
+  const { id } = req.params;
+  const product = req.body;
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({ success: false, message: 'Produkten hittades inte' });
+  }
+  try {
+    const updatedProduct = await Product.findByIdAndUpdate(id, product, { new: true, runValidators: true });
+
+    res.status(200).json({ success: true, data: updatedProduct });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: 'Server error' });
+  }
+});
 
 
 //TODO Delete product (admin only)
@@ -66,7 +73,7 @@ router.delete("/:id", adminAuth, async (req, res) => {
   try {
     const deletedProduct = await Product.findByIdAndDelete(req.params.id);
     if (!deletedProduct) {
-      return res.status(404).json({ error: "Produkten hittades inte!" });
+      return res.status(404).json({ error: "Produkten hittades inte" });
     }
     res.json({ message: "Produkten har tagits bort!" });
   } catch (error) {

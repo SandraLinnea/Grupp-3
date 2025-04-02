@@ -1,66 +1,67 @@
-import express from 'express';
-import jwt from 'jsonwebtoken';
-import bcrypt from 'bcrypt';
-import User from '../models/User.js';
-import { login, register } from '../controllers/authController.js';
+const bcrypt = require("bcrypt");
+const express = require("express");
 
 const router = express.Router();
 
-router.post('/register', register);
-router.post('/login', login);
+const User = require("../models/User");
+const { generateAccessJWT } = require("../utils/jwt");
 
 // REGISTER
-router.post('/register', async (req, res) => {
+router.post("/register", async (req, res) => {
   try {
-    const { email, password, isAdmin = false } = req.body;
+    const { email, password, firstName, lastName, isAdmin = false } = req.body;
+
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      return res.status(400).json({ error: "User unable to register" });
+      throw new Error("Email already in use");
     }
-    const user = new User({ email, password, isAdmin });
+
+    const user = new User({ email, password, firstName, lastName, isAdmin });
     await user.save();
-    
-    const token = jwt.sign(
-      { userId: user._id, isAdmin: user.isAdmin },
-      process.env.JWT_SECRET || 'hemlig_nyckel',
-      { expiresIn: '1h' }
-    );
+
     res.status(201).json({
-      token,
-      user: { _id: user._id, email: user.email, isAdmin: user.isAdmin }
+      message: "User registered correctly"
     });
   } catch (error) {
-    console.warn("Register error:", error);
-    res.status(500).json({ error: 'Serverfel vid registrering' });
+    console.warn("Error registering user:", error.message);
+    res.status(400).json({
+      error: "User unable to register"
+    });
   }
 });
 
 // LOGIN
-router.post('/login', async (req, res) => {
-  const { email, password } = req.body;
-
+router.post("/login", async (req, res) => {
   try {
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email: req.body.email });
     if (!user) {
-      return res.status(401).json({ error: 'Felaktig e-post eller lösenord' });
+      throw new Error("User not found");
     }
-    const isPasswordCorrect = await bcrypt.compare(password, user.password);
-    if (!isPasswordCorrect) {
-      return res.status(401).json({ error: 'Felaktig e-post eller lösenord' });
+
+    const isPasswordSame = await bcrypt.compare(req.body.password, user.password);
+    if (!isPasswordSame) {
+      throw new Error("Invalid password");
     }
-    const token = jwt.sign(
-      { userId: user._id, isAdmin: user.isAdmin },
-      process.env.JWT_SECRET || 'hemlig_nyckel',
-      { expiresIn: '1h' }
-    );
+
+    const token = generateAccessJWT({
+      userId: user._id,
+      isAdmin: user.isAdmin
+    });
+
     res.json({
       token,
-      user: { _id: user._id, email: user.email, isAdmin: user.isAdmin }
+      user: {
+        firstName: user.firstName,
+        email: user.email,
+        role: user.isAdmin ? "admin" : "user"
+      }
     });
   } catch (error) {
-    console.warn("Login error:", error);
-    res.status(500).json({ error: 'Serverfel vid inloggning' });
+    console.warn("Error logging in user:", error.message);
+    res.status(400).json({
+      error: "User unable to login"
+    });
   }
 });
 
-export default router;
+module.exports = router;
