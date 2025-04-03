@@ -8,14 +8,14 @@ const router = express.Router();
 // REGISTER
 router.post("/register", async (req, res) => {
   try {
-    const { email, password, firstName, lastName, isAdmin = false } = req.body;
+    const { email, password, firstName, lastName } = req.body;
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       throw new Error("Email already in use");
     }
 
-    const user = new User({ email, password, firstName, lastName, isAdmin });
+    const user = new User({ email, password, firstName, lastName, isAdmin: false });
     await user.save();
 
     const token = generateAccessToken({ userId: user._id, isAdmin: user.isAdmin });
