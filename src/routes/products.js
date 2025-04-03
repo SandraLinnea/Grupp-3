@@ -1,5 +1,6 @@
 import express from "express";
 import Product from "../models/Product.js";
+import mongoose from "mongoose";
 import { adminAuth } from "../middleware/auth.js";
 import { readFileSync } from "fs";
 import { fileURLToPath } from "url";
@@ -17,23 +18,15 @@ const productsJSON = JSON.parse(
 );
 
 // Get all products
-
-
 router.get("/", async (req, res) => {
   try {
     const products = await Product.find();
     return res.json(products);
-
-/*  res.json(products);
-    return */;
-
   } catch (error) {
     console.warn("Error in getting products", error)
     res.status(500).json({ error: error.message });
   }
 });
-
-
 
 //TODO Get single product
 router.get("/:id", async (req, res) => {
@@ -59,6 +52,28 @@ router.post("/", adminAuth, async (req, res) => {
 });
 
 //TODO Update product (admin only)
+router.put("/:id", adminAuth, async (req, res) => {
+  const { id } = req.params;
+  const body = req.body;
+  const productData = { ...body };
+  delete productData._id;
+  try {
+    const updatedProduct = await Product.findOneAndUpdate(
+      { _id: id },
+      { $set: productData },
+      { new: true, runValidators: true }
+    );
+    if (!updatedProduct) {
+      throw new Error("Produkten hittades inte");
+    }
+    res.json(updatedProduct);
+  } catch (error) {
+    console.warn("Fel vid hämtning av produkt", error);
+    res.status(404).json({
+      error: "Produkten hittades inte",
+    });
+  }
+});
 
 
 //TODO Delete product (admin only)
@@ -66,7 +81,7 @@ router.delete("/:id", adminAuth, async (req, res) => {
   try {
     const deletedProduct = await Product.findByIdAndDelete(req.params.id);
     if (!deletedProduct) {
-      return res.status(404).json({ error: "Produkten hittades inte!" });
+      return res.status(404).json({ error: "Produkten hittades inte" });
     }
     res.json({ message: "Produkten har tagits bort!" });
   } catch (error) {
