@@ -1,12 +1,9 @@
 import express from 'express';
-import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
-// import User from '../models/User.js';
+import User from '../models/User.js';
+import { generateAccessToken, verifyAccessToken } from '../utils/jwt.js';
 
 const router = express.Router();
-
-const User = require("../models/User");
-const { generateAccessJWT, verifyAccessToken } = require("../utils/jwt");
 
 // REGISTER
 router.post('/register', async (req, res) => {
@@ -20,8 +17,8 @@ router.post('/register', async (req, res) => {
 
     const user = new User({ email, password, isAdmin, firstName, lastName });
     await user.save();
-    
-    const token = generateAccessJWT({ userId: user._id, isAdmin: user.isAdmin });
+
+    const token = generateAccessToken({ userId: user._id, isAdmin: user.isAdmin });
 
     res.status(201).json({
       token,
@@ -29,11 +26,9 @@ router.post('/register', async (req, res) => {
     });
   } catch (error) {
     console.warn("Register error:", error.message);
-    console.warn("Full error log:", error);
     res.status(500).json({ error: 'Serverfel vid registrering' });
   }
 });
-
 
 // LOGIN
 router.post('/login', async (req, res) => {
@@ -50,15 +45,14 @@ router.post('/login', async (req, res) => {
       return res.status(401).json({ error: 'Ogiltig inloggning' });
     }
 
-    const token = generateAccessJWT({
+    const token = generateAccessToken({
       userId: user._id,
       isAdmin: user.isAdmin
     });
 
-    // 📦 Skicka token i JSON-svar
     res.json({
       message: "Login successful",
-      accessToken: token, // 💥 viktig del
+      accessToken: token,
       user: {
         firstName: user.firstName,
         email: user.email,
@@ -72,4 +66,4 @@ router.post('/login', async (req, res) => {
   }
 });
 
-module.exports = router
+export default router;
