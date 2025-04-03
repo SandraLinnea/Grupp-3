@@ -1,10 +1,9 @@
-const bcrypt = require("bcrypt");
-const express = require("express");
+import express from 'express';
+import bcrypt from 'bcrypt';
+import User from '../models/User.js';
+import { generateAccessToken, verifyAccessToken } from '../utils/jwt.js';
 
 const router = express.Router();
-
-const User = require("../models/User");
-const { generateAccessJWT } = require("../utils/jwt");
 
 // REGISTER
 router.post("/register", async (req, res) => {
@@ -19,14 +18,14 @@ router.post("/register", async (req, res) => {
     const user = new User({ email, password, firstName, lastName, isAdmin });
     await user.save();
 
+    const token = generateAccessToken({ userId: user._id, isAdmin: user.isAdmin });
+
     res.status(201).json({
       message: "User registered correctly"
     });
   } catch (error) {
-    console.warn("Error registering user:", error.message);
-    res.status(400).json({
-      error: "User unable to register"
-    });
+    console.warn("Register error:", error.message);
+    res.status(500).json({ error: 'Serverfel vid registrering' });
   }
 });
 
@@ -43,13 +42,14 @@ router.post("/login", async (req, res) => {
       throw new Error("Invalid password");
     }
 
-    const token = generateAccessJWT({
+    const token = generateAccessToken({
       userId: user._id,
       isAdmin: user.isAdmin
     });
 
     res.json({
-      token,
+      message: "Login successful",
+      accessToken: token,
       user: {
         firstName: user.firstName,
         email: user.email,
@@ -64,4 +64,4 @@ router.post("/login", async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

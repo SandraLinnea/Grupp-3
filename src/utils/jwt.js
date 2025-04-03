@@ -1,25 +1,36 @@
-const jwt = require('jsonwebtoken');
+import jwt from "jsonwebtoken"
+import dotenv from "dotenv"
+dotenv.config();
 
 const ACCESS_SECRET = process.env.JWT_ACCESS_SECRET;
 
-function generateAccessJWT(payload) {
-  if (!ACCESS_SECRET) {
-    throw new Error("INGEN ACCESS SECRET HITTADES I ENV");
-  }
+function generateAccessToken(payload) {
+    if (!ACCESS_SECRET) {
+        throw new Error("NO JWT_SECRET FOUND IN ENV");
+    }
 
-  return jwt.sign(payload, ACCESS_SECRET, { expiresIn: "12h" });
+    const token = jwt.sign(
+        payload,
+        ACCESS_SECRET,
+        {
+            expiresIn: "12h"
+        }
+    );
+
+    return token;
 }
 
 function verifyAccessToken(token) {
-  if (!ACCESS_SECRET) {
-    throw new Error("INGEN ACCESS SECRET HITTADES I ENV");
-  }
+    if (!ACCESS_SECRET) {
+        throw new Error("NO JWT_SECRET FOUND IN ENV");
+    }
 
-  return jwt.verify(token, ACCESS_SECRET);
+    const decryptedToken = jwt.verify(token, ACCESS_SECRET);
+
+    return decryptedToken;
 }
 
-module.exports = {
-  generateAccessJWT,
-  verifyAccessToken
-};
-
+export {
+    generateAccessToken,
+    verifyAccessToken
+}
