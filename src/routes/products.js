@@ -1,5 +1,6 @@
 import express from "express";
 import Product from "../models/Product.js";
+import mongoose from "mongoose";
 import { adminAuth } from "../middleware/auth.js";
 import { readFileSync } from "fs";
 import { fileURLToPath } from "url";
@@ -53,17 +54,24 @@ router.post("/", adminAuth, async (req, res) => {
 //TODO Update product (admin only)
 router.put("/:id", adminAuth, async (req, res) => {
   const { id } = req.params;
-  const product = req.body;
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).json({ success: false, message: 'Produkten hittades inte' });
-  }
+  const body = req.body;
+  const productData = { ...body };
+  delete productData._id;
   try {
-    const updatedProduct = await Product.findByIdAndUpdate(id, product, { new: true, runValidators: true });
-
-    res.status(200).json({ success: true, data: updatedProduct });
+    const updatedProduct = await Product.findOneAndUpdate(
+      { _id: id },
+      { $set: productData },
+      { new: true, runValidators: true }
+    );
+    if (!updatedProduct) {
+      throw new Error("Produkten hittades inte");
+    }
+    res.json(updatedProduct);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ success: false, message: 'Server error' });
+    console.warn("Fel vid hämtning av produkt", error);
+    res.status(404).json({
+      error: "Produkten hittades inte",
+    });
   }
 });
 
