@@ -64,4 +64,24 @@ router.post("/login", async (req, res) => {
   }
 });
 
+// GET USER
+router.get("/me", auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.userId).select("-password");
+    if (!user) {
+      return res.status(404).json({ message: "Användare hittades inte" });
+    }
+    res.json({
+      id: user._id,
+      email: user.email,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      isAdmin: user.isAdmin,
+    });
+  } catch (error) {
+    console.error("Fel vid hämtning av användare:", error.message);
+    res.status(500).json({ error: "Kunde inte hämta användaren" });
+  }
+});
+
 export default router;
