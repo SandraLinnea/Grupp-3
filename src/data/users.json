@@ -11,6 +11,6 @@
     "password": "admin",
     "firstName": "Admin",
     "lastName": "Adminsson",
-    "isAdmin": false
+    "isAdmin": true
   }
 ]
