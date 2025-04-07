@@ -43,6 +43,8 @@ app.get('/api', (req, res) => {
 import dataMigrationRouterModule from "./migration/data.migration.route_module.js";
 import Category from "./models/CategoryModel.js";
 import Product from "./models/Product.js";
+import User from "./models/User.js";
+
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 
@@ -53,6 +55,8 @@ const _dirname = dirname(_filename);
 // Rätt dataPath
 const dataPathCategories = join(_dirname, "data", "categories.json");
 const dataPathProducts = join(_dirname, "data", "products.json");
+const dataPathUsers = join(_dirname, "data", "users.json");
+
 console.log("Datapath", dataPathCategories)
 app.use(
   "/api/data-migration/categories",
@@ -64,11 +68,17 @@ app.use(
   dataMigrationRouterModule(Product, dataPathProducts)
 );
 
+app.use(
+  "/api/data-migration/users",
+  dataMigrationRouterModule(User, dataPathUsers)
+);
+
 
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/categories', categoryRoutes);
+app.use('/api/users', userRoutes);
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/hakim-livs')
