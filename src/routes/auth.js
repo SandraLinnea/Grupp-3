@@ -2,6 +2,7 @@ import express from 'express';
 import bcrypt from 'bcrypt';
 import User from '../models/User.js';
 import { generateAccessToken, verifyAccessToken } from '../utils/jwt.js';
+import { userAuth } from '../middleware/auth.js';
 
 const router = express.Router();
 
@@ -65,7 +66,7 @@ router.post("/login", async (req, res) => {
 });
 
 // GET USER
-router.get("/me", auth, async (req, res) => {
+router.get("/me", userAuth, async (req, res) => {
   try {
     const user = await User.findById(req.userId).select("-password");
     if (!user) {
