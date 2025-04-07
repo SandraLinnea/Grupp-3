@@ -2,7 +2,9 @@ import express from 'express';
 import bcrypt from 'bcrypt';
 import User from '../models/User.js';
 import { generateAccessToken, verifyAccessToken } from '../utils/jwt.js';
+import createAuthMiddleware from '../middleware/auth.js';
 
+const auth = createAuthMiddleware();
 const router = express.Router();
 
 // REGISTER
@@ -64,24 +66,34 @@ router.post("/login", async (req, res) => {
   }
 });
 
+//GET ALL USERS
+router.get("/admin/all/", auth, async (res) => {
+  try {
+      const users = await User.find().select("-password")
+      return res.json(users)
+  } catch (error) {
+      res.status(401).json({
+          message: "Inte auktoriserad"
+      })
+  }
+})
+
 // GET USER
 router.get("/me", auth, async (req, res) => {
+  const userId = req.userId;
+
   try {
-    const user = await User.findById(req.userId).select("-password");
+    const user = await User.findById(userId).select("-password");
     if (!user) {
-      return res.status(404).json({ message: "Användare hittades inte" });
+      throw new Error("Du behöver logga in igen");
     }
-    res.json({
-      id: user._id,
-      email: user.email,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      isAdmin: user.isAdmin,
-    });
+    res.json(user);
   } catch (error) {
-    console.error("Fel vid hämtning av användare:", error.message);
-    res.status(500).json({ error: "Kunde inte hämta användaren" });
+    res.status(401).json({
+      message: "Du behöver logga in igen"
+    });
   }
 });
+
 
 export default router;

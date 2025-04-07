@@ -45,6 +45,14 @@ const orderSchema = new mongoose.Schema({
         type: Number,
         required: true
       },
+      vat: {
+        type: Number,
+        required: true
+      },
+      orderNumber: {
+        type: String,
+        unique: true
+      },
     status: {
         type: String,
         enum: ['in progress', 'shipped', 'canceled', 'delivered'],
@@ -60,5 +68,10 @@ orderSchema.pre('save', function (next) {
       this.totalPrice = total;
       this.vat = Number((total * 0.12).toFixed(2));
     }
+    if (!this.orderNumber) {
+      const orderCode = Math.floor(100000 + Math.random() * 900000);
+      this.orderNumber = `ORD-${orderCode}`;
+    }
+  
     next();
   });
