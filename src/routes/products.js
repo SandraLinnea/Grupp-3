@@ -23,7 +23,7 @@ router.get("/", async (req, res) => {
     const products = await Product.find();
     return res.json(products);
   } catch (error) {
-    console.warn("Error in getting products", error)
+    console.warn("Fel vid hämtning av produkter", error)
     res.status(500).json({ error: error.message });
   }
 });
