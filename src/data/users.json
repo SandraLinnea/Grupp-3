@@ -1,16 +1,18 @@
 [
   {
-    "email": "user@user.com",
-    "password": "user",
-    "firstName": "User",
-    "lastName": "Usersson",
-    "isAdmin": false
+    "_id":"67f3c61ab62ce5498c73d3a7",
+    "firstName":"User",
+    "lastName":"Usersson",
+    "email":"user@user.com",
+    "password":"$2a$10$EUtKw0v4Pw5cWaAF/uLXDOwfkK926bMrkEDz108ZIjWCzOi2ODOpq",
+    "isAdmin":false
   },
   {
-    "email": "admin@admin.com",
-    "password": "admin",
-    "firstName": "Admin",
-    "lastName": "Adminsson",
-    "isAdmin": true
+    "_id":"67f3c604b62ce5498c73d3a4",
+    "firstName":"Admin",
+    "lastName":"Adminsson",
+    "email":"admin@admin.com",
+    "password":"$2a$10$KY.Zj.vzUVmv3BgWKguvPeQ1q9OX2QzrErKIk2CMGC/HxsSh7.nBu",
+    "isAdmin":true
   }
 ]
