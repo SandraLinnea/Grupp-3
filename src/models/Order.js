@@ -44,15 +44,15 @@ const orderSchema = new mongoose.Schema({
     totalPrice: {
         type: Number,
         required: true
-      },
-      vat: {
+    },
+    vat: {
         type: Number,
         required: true
-      },
-      orderNumber: {
+    },
+    orderNumber: {
         type: String,
         unique: true
-      },
+    },
     status: {
         type: String,
         enum: ['in progress', 'shipped', 'canceled', 'delivered'],
