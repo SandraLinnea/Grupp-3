@@ -3,6 +3,7 @@ import bcrypt from 'bcrypt';
 import User from '../models/User.js';
 import { generateAccessToken, verifyAccessToken } from '../utils/jwt.js';
 import createAuthMiddleware from '../middleware/auth.js';
+import { userAuth } from '../middleware/auth.js';
 
 const auth = createAuthMiddleware();
 const router = express.Router();
