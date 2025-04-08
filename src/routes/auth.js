@@ -2,7 +2,7 @@ import express from 'express';
 import bcrypt from 'bcrypt';
 import User from '../models/User.js';
 import { generateAccessToken, verifyAccessToken } from '../utils/jwt.js';
-import createAuthMiddleware from '../middleware/auth.js';
+import createAuthMiddleware, { adminAuth } from '../middleware/auth.js';
 import { userAuth } from '../middleware/auth.js';
 
 const auth = createAuthMiddleware();
@@ -68,16 +68,17 @@ router.post("/login", async (req, res) => {
 });
 
 //GET ALL USERS
-router.get("/admin/all/", auth, async (res) => {
+router.get("/admin/users", adminAuth, async (req, res) => {
   try {
-      const users = await User.find().select("-password")
-      return res.json(users)
+    const users = await User.find().select("-password");
+    res.json(users);
   } catch (error) {
-      res.status(401).json({
-          message: "Inte auktoriserad"
-      })
+    console.error("Fel vid hämtning av användare:", error.message);
+    res.status(401).json({
+      message: "Kunde inte hämta användare"
+    });
   }
-})
+});
 
 // GET USER
 router.get("/me", auth, async (req, res) => {
