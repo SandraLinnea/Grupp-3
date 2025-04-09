@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import authRoutes from './routes/auth.js';
 import productRoutes from './routes/products.js';
 import categoryRoutes from './routes/categoryRoute.js';
+import orderRoutes from './routes/order.js';
 
 dotenv.config();
 
@@ -34,6 +35,14 @@ app.get('/api', (req, res) => {
       },
       categories: {
         "GET /api/categories": "Get all categories"
+      },
+      orders: {
+        "GET /api/orders": "Get all orders (Admin only)",
+        "GET /api/orders/:id": "Get a specific order",
+        "GET /api/orders/user/myorders": "Get current user's orders",
+        "POST /api/orders": "Create a new order",
+        "PUT /api/orders/:id/status": "Update order status (Admin only)",
+        "PUT /api/orders/:id/cancel": "Cancel order",
       }
     },
     authentication: "Use Bearer token in Authorization header for protected routes"
@@ -78,6 +87,7 @@ app.use(
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/categories', categoryRoutes);
+app.use('/api/orders', orderRoutes);
 // app.use('/api/users', userRoutes);
 
 // Connect to MongoDB
