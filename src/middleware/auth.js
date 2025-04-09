@@ -27,6 +27,7 @@ const createAuthMiddleware = (requireAdmin = false) => {
     }
   };
 };
+export const auth = createAuthMiddleware(false); // Default is user authentication
 export const userAuth = createAuthMiddleware(false); // Default is user authentication
 export const adminAuth = createAuthMiddleware(true);
 export default createAuthMiddleware;
