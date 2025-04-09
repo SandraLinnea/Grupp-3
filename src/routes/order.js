@@ -1,8 +1,8 @@
 import express from 'express';
 import Order from '../models/Order.js';
-import { auth, adminAuth } from '../middleware/auth.js';
-import mongoose from 'mongoose';
-import Product from '../models/Product.js';
+import { adminAuth } from '../middleware/auth.js';
+// import mongoose from 'mongoose';
+// import Product from '../models/Product.js';
 
 const router = express.Router();
 
@@ -21,7 +21,7 @@ router.get('/', adminAuth, async (req, res) => {
 });
 
 // Hämta en specifik order med ID
-router.get('/:id', auth, async (req, res) => {
+/* router.get('/:id', auth, async (req, res) => {
   try {
     const order = await Order.findById(req.params.id)
       .populate('user', 'email firstName lastName')
@@ -54,10 +54,10 @@ router.get('/user/myorders', auth, async (req, res) => {
     console.error('Fel vid hämtning av användarens ordrar:', error);
     res.status(500).json({ error: 'Kunde inte hämta dina ordrar' });
   }
-});
+}); */
 
 // Skapa en ny order
-router.post('/', auth, async (req, res) => {
+/* router.post('/', async (req, res) => {
   const session = await mongoose.startSession();
   session.startTransaction();
 
@@ -127,10 +127,10 @@ router.post('/', auth, async (req, res) => {
     console.error('Fel vid skapande av order:', error);
     res.status(400).json({ error: error.message });
   }
-});
+}); */
 
 // Uppdatera orderstatus (endast admin)
-router.put('/:id/status', adminAuth, async (req, res) => {
+/* router.put('/:id/status', adminAuth, async (req, res) => {
   try {
     const { status } = req.body;
     
@@ -180,6 +180,6 @@ router.put('/:id/cancel', auth, async (req, res) => {
     console.error('Fel vid avbrytning av order:', error);
     res.status(500).json({ error: 'Kunde inte avbryta ordern' });
   }
-});
+}); */
 
 export default router;
