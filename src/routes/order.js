@@ -1,0 +1,179 @@
+import express from 'express';
+import Order from '../models/Order.js';
+import { auth, adminAuth } from '../middleware/auth.js';
+import mongoose from 'mongoose';
+import Product from '../models/Product.js';
+
+const router = express.Router();
+
+// Hämta alla ordrar (endast admin)
+router.get('/', adminAuth, async (req, res) => {
+  try {
+    const orders = await Order.find()
+      .populate('user', 'email firstName lastName')
+      .populate('orderItem.productId', 'name price');
+    
+    res.json(orders);
+  } catch (error) {
+    console.error('Fel vid hämtning av ordrar:', error);
+    res.status(500).json({ error: 'Kunde inte hämta ordrar' });
+  }
+});
+
+// Hämta en specifik order med ID
+router.get('/:id', auth, async (req, res) => {
+  try {
+    const order = await Order.findById(req.params.id)
+      .populate('user', 'email firstName lastName')
+      .populate('orderItem.productId', 'name price');
+    
+    if (!order) {
+      return res.status(404).json({ error: 'Ordern hittades inte' });
+    }
+
+    // Kontrollera att användaren har rätt att se ordern (admin eller orderägare)
+    if (!req.isAdmin && order.user && order.user._id.toString() !== req.userId) {
+      return res.status(403).json({ error: 'Åtkomst nekad' });
+    }
+
+    res.json(order);
+  } catch (error) {
+    console.error('Fel vid hämtning av order:', error);
+    res.status(500).json({ error: 'Kunde inte hämta ordern' });
+  }
+});
+
+// Hämta användarens ordrar
+router.get('/user/myorders', auth, async (req, res) => {
+  try {
+    const orders = await Order.find({ user: req.userId })
+      .populate('orderItem.productId', 'name price');
+    
+    res.json(orders);
+  } catch (error) {
+    console.error('Fel vid hämtning av användarens ordrar:', error);
+    res.status(500).json({ error: 'Kunde inte hämta dina ordrar' });
+  }
+});
+
+// Skapa en ny order
+router.post('/', auth, async (req, res) => {
+  const session = await mongoose.startSession();
+  session.startTransaction();
+
+  try {
+    const { 
+      email, 
+      firstname, 
+      lastname, 
+      phonenumber, 
+      shippingAddress, 
+      orderItem 
+    } = req.body;
+
+    // Validera orderItems och beräkna totalpris
+    if (!orderItem || orderItem.length === 0) {
+      return res.status(400).json({ error: 'Ordern måste innehålla minst en produkt' });
+    }
+
+    // Kontrollera att alla produkter finns och har tillräckligt lager
+    for (const item of orderItem) {
+      const product = await Product.findById(item.productId);
+      if (!product) {
+        await session.abortTransaction();
+        session.endSession();
+        return res.status(404).json({ error: `Produkt med ID ${item.productId} hittades inte` });
+      }
+      
+      // Här kan du lägga till lagerkontroll om det behövs
+      // if (product.stock < item.quantity) {
+      //   await session.abortTransaction();
+      //   session.endSession();
+      //   return res.status(400).json({ error: `Inte tillräckligt i lager för ${product.name}` });
+      // }
+    }
+
+    // Skapa ny order
+    const order = new Order({
+      user: req.userId,
+      email,
+      firstname,
+... (86 rader kvar)
+Minimera
+message.txt
+6 KB
+import express from 'express';
+import Order from '../models/Order.js';
+import { auth } from '../middleware/auth.js';
+import mongoose from 'mongoose';
+import Product from '../models/Product.js';
+
+const router = express.Router();
+
+/**
+ 
+Description
+POST: /api/orders/
+WHEN I call endpoint with correct information (following order model)
+THEN a product is created
+WHEN I call endpoint with incorrect information (not following order model)
+THEN errorcode*/
+
+// Skapa en ny order
+router.post('/', auth, async (req, res) => {
+  const session = await mongoose.startSession();
+  session.startTransaction();
+
+  try {
+    const { 
+      email, 
+      firstname, 
+      lastname, 
+      phonenumber, 
+      shippingAddress, 
+      orderItem 
+    } = req.body;
+
+    // Validera orderItems och beräkna totalpris
+    if (!orderItem || orderItem.length === 0) {
+      return res.status(400).json({ error: 'Ordern måste innehålla minst en produkt' });
+    }
+
+    // Kontrollera att alla produkter finns och har tillräckligt lager
+    for (const item of orderItem) {
+      const product = await Product.findById(item.productId);
+      if (!product) {
+        await session.abortTransaction();
+        session.endSession();
+        return res.status(404).json({ error: Produkt med ID ${item.productId} hittades inte });
+      }
+    }
+
+    // Skapa ny order
+    const order = new Order({
+      user: req.userId,
+      email,
+      firstname,
+      lastname,
+      phonenumber,
+      shippingAddress,
+      orderItem,
+      status: 'in progress'
+    });
+
+    await order.save({ session });
+
+    await session.commitTransaction();
+    session.endSession();
+
+    res.status(201).json(order);
+  } catch (error) {
+    await session.abortTransaction();
+    session.endSession();
+
+    console.error('Fel vid skapande av order:', error);
+    res.status(400).json({ error: error.message });
+  }
+});
+
+export default router;
