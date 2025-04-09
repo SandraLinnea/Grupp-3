@@ -7,7 +7,7 @@ import { adminAuth } from '../middleware/auth.js';
 const router = express.Router();
 
 // Hämta alla ordrar (endast admin)
-router.get('/', adminAuth, async (req, res) => {
+router.get('/orders', adminAuth, async (req, res) => {
   try {
     const orders = await Order.find()
       .populate('user', 'email firstName lastName')
