@@ -10,8 +10,7 @@ const router = express.Router();
 router.get('/orders', adminAuth, async (req, res) => {
   try {
     const orders = await Order.find()
-      .populate('user', 'email firstName lastName')
-      .populate('orderItem.productId', 'name price');
+
     
     res.json(orders);
   } catch (error) {
