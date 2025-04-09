@@ -6,7 +6,7 @@ import { adminAuth } from '../middleware/auth.js';
 
 const router = express.Router();
 
-// Hämta alla ordrar (endast admin)
+/*// Hämta alla ordrar (endast admin)
 router.get('/orders', adminAuth, async (req, res) => {
   try {
     const orders = await Order.find()
@@ -16,6 +16,18 @@ router.get('/orders', adminAuth, async (req, res) => {
   } catch (error) {
     console.error('Fel vid hämtning av ordrar:', error);
     res.status(500).json({ error: 'Kunde inte hämta ordrar' });
+  }
+});*/
+
+
+// Get all products
+router.get("/", async (req, res) => {
+  try {
+    const orders = await Order.find();
+    return res.json(orders);
+  } catch (error) {
+    console.warn("Fel vid hämtning av produkter", error)
+    res.status(500).json({ error: error.message });
   }
 });
 
