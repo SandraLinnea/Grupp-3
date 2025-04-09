@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 import authRoutes from './routes/auth.js';
 import productRoutes from './routes/products.js';
 import categoryRoutes from './routes/categoryRoute.js';
-import orderRoutes from './routes/order.js';
+// import orderRoutes from './routes/order.js';
 
 dotenv.config();
 
@@ -52,7 +52,7 @@ app.get('/api', (req, res) => {
 import dataMigrationRouterModule from "./migration/data.migration.route_module.js";
 import Category from "./models/CategoryModel.js";
 import Product from "./models/Product.js";
-import User from "./models/User.js";
+import Order from "./models/Order.js";
 
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
@@ -64,7 +64,7 @@ const _dirname = dirname(_filename);
 // Rätt dataPath
 const dataPathCategories = join(_dirname, "data", "categories.json");
 const dataPathProducts = join(_dirname, "data", "products.json");
-const dataPathUsers = join(_dirname, "data", "users.json");
+const dataPathOrders = join(_dirname, "data", "orders.json");
 
 console.log("Datapath", dataPathCategories)
 app.use(
@@ -78,10 +78,9 @@ app.use(
 );
 
 app.use(
-  "/api/data-migration/users",
-  dataMigrationRouterModule(User, dataPathUsers)
+  "/api/data-migration/orders",
+  dataMigrationRouterModule(Order, dataPathOrders)
 );
-
 
 // Routes
 app.use('/api/auth', authRoutes);
