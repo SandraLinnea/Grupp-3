@@ -1,7 +1,7 @@
 import express from 'express';
 import bcrypt from 'bcrypt';
 import User from '../models/User.js';
-import { generateAccessToken, verifyAccessToken } from '../utils/jwt.js';
+import { generateAccessToken } from '../utils/jwt.js';
 import createAuthMiddleware, { adminAuth } from '../middleware/auth.js';
 
 const auth = createAuthMiddleware();

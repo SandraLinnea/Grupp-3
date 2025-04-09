@@ -1,6 +1,5 @@
 import express from "express";
 import Product from "../models/Product.js";
-import mongoose from "mongoose";
 import { adminAuth } from "../middleware/auth.js";
 import { readFileSync } from "fs";
 import { fileURLToPath } from "url";
