@@ -31,10 +31,27 @@ const userSchema = new mongoose.Schema({
   timestamps: true
 });
 
-userSchema.pre('save', async function (next) {
+/* userSchema.pre('save', async function (next) {
   if (!this.isModified('password')) return next();
   this.password = await bcrypt.hash(this.password, 10);
   next();
 });
+ */
+
+userSchema.pre('save',async function(next) {
+  const user = this
+  if(user.isModified('password')) {
+      try {
+          const salt = await bcrypt.genSalt(10)
+          const hashedPassword = await bcrypt.hash(user.password, salt)
+          user.password = hashedPassword
+          next()
+      } catch (error) {
+          console.warn("Error: in hashing password")
+          next(error)
+      }
+  }
+})
+
 
 export default mongoose.model('User', userSchema);
