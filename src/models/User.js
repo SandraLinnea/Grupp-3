@@ -5,23 +5,27 @@ const userSchema = new mongoose.Schema({
   firstName: {
     type: String,
     required: true,
-    trim: true
+    trim: true,
+    match: /^[A-Za-zåäöÅÄÖ]+$/
   },
   lastName: {
     type: String,
     required: true,
-    trim: true
+    trim: true,
+    match: /^[A-Za-zåäöÅÄÖ]+$/
   },
   email: {
     type: String,
     required: true,
     unique: true,
     trim: true,
-    lowercase: true
+    lowercase: true,
+    match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/
   },
   password: {
     type: String,
-    required: true
+    required: true,
+    match: /^.{5,}$/
   },
   isAdmin: {
     type: Boolean,
