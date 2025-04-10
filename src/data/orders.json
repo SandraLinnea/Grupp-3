@@ -1,3 +1,266 @@
-[
-    
-]
+{
+    "shippingAddress": {
+        "street": "Tomtegatan",
+        "number": "12",
+        "zipCode": "12345",
+        "city": "Örebro"
+    },
+    "_id": "67f7b61e36bf4b499fbe278e",
+    "email": "user@user.com",
+    "firstname": "Jeppe",
+    "lastname": "Nisse",
+    "phonenumber": "0760171007",
+    "orderItem": [
+        {
+            "productId": "67efaaa8202faa3dbb38ec03",
+            "quantity": 1,
+            "_id": "67f7b61e36bf4b499fbe278f"
+        },
+        {
+            "productId": "67efaaa8202faa3dbb38ec02",
+            "quantity": 1,
+            "_id": "67f7b61e36bf4b499fbe2790"
+        },
+        {
+            "productId": "67efaaa8202faa3dbb38ec04",
+            "quantity": 1,
+            "_id": "67f7b61e36bf4b499fbe2791"
+        }
+    ],
+    "status": "in progress",
+    "createdAt": "2025-04-10T12:14:22.777Z",
+    "updatedAt": "2025-04-10T12:14:22.777Z",
+    "totalPrice": 39,
+    "vat": 4.68,
+    "orderNumber": "ORD-140486",
+    "__v": 0
+},
+{
+    "shippingAddress": {
+        "street": "Testgatan",
+        "number": "2",
+        "zipCode": "12335",
+        "city": "Tyresö"
+    },
+    "_id": "67f7b63c4fafde59aa47f0f7",
+    "email": "admin@hotmail.com",
+    "firstname": "Mimmi",
+    "lastname": "Gibbs",
+    "phonenumber": "0737024235",
+    "orderItem": [
+        {
+            "productId": "67efaaa8202faa3dbb38ec01",
+            "quantity": 2,
+            "_id": "67f7b63c4fafde59aa47f0f8"
+        },
+        {
+            "productId": "67efaaa8202faa3dbb38ec02",
+            "quantity": 1,
+            "_id": "67f7b63c4fafde59aa47f0f9"
+        }
+    ],
+    "status": "in progress",
+    "createdAt": "2025-04-10T12:14:52.892Z",
+    "updatedAt": "2025-04-10T12:14:52.892Z",
+    "totalPrice": 24,
+    "vat": 2.88,
+    "orderNumber": "ORD-324409",
+    "__v": 0
+},
+{
+    "shippingAddress": {
+        "street": "Bäverväcksgränd",
+        "number": "12",
+        "zipCode": "12462",
+        "city": "Rättvik"
+    },
+    "_id": "67f7b6b6170348cd07dbe328",
+    "email": "admin@admin.com",
+    "firstname": "Hej",
+    "lastname": "Svej",
+    "phonenumber": "0372174125",
+    "orderItem": [
+        {
+            "productId": "67efaaa8202faa3dbb38ec18",
+            "quantity": 3,
+            "_id": "67f7b6b6170348cd07dbe329"
+        }
+    ],
+    "status": "in progress",
+    "createdAt": "2025-04-10T12:16:54.975Z",
+    "updatedAt": "2025-04-10T12:16:54.975Z",
+    "totalPrice": 27,
+    "vat": 3.24,
+    "orderNumber": "ORD-461600",
+    "__v": 0
+},
+{
+    "shippingAddress": {
+        "street": "Testgatan",
+        "number": "1",
+        "zipCode": "13543",
+        "city": "Tyresö"
+    },
+    "_id": "67f7ba903cee87f24564a044",
+    "email": "admin@admin.com",
+    "firstname": "Mimmi",
+    "lastname": "Gibbs",
+    "phonenumber": "0737024236",
+    "orderItem": [
+        {
+            "productId": "67efaaa8202faa3dbb38ec01",
+            "quantity": 2,
+            "_id": "67f7ba903cee87f24564a045"
+        },
+        {
+            "productId": "67efaaa8202faa3dbb38ec05",
+            "quantity": 4,
+            "_id": "67f7ba903cee87f24564a046"
+        }
+    ],
+    "status": "in progress",
+    "createdAt": "2025-04-10T12:33:20.240Z",
+    "updatedAt": "2025-04-10T12:33:20.240Z",
+    "totalPrice": 48,
+    "vat": 5.76,
+    "orderNumber": "ORD-876524",
+    "__v": 0
+},
+{
+    "shippingAddress": {
+        "street": "agsagasg",
+        "number": "12",
+        "zipCode": "12345",
+        "city": "lishdhlsd"
+    },
+    "_id": "67f7babc64ea98b4159440cd",
+    "email": "user@user.com",
+    "firstname": "User",
+    "lastname": "Nilss",
+    "phonenumber": "0760171007",
+    "orderItem": [
+        {
+            "productId": "67efaaa8202faa3dbb38ec01",
+            "quantity": 5,
+            "_id": "67f7babc64ea98b4159440ce"
+        },
+        {
+            "productId": "67efaaa8202faa3dbb38ec02",
+            "quantity": 4,
+            "_id": "67f7babc64ea98b4159440cf"
+        }
+    ],
+    "status": "in progress",
+    "createdAt": "2025-04-10T12:34:04.565Z",
+    "updatedAt": "2025-04-10T12:34:04.565Z",
+    "totalPrice": 72,
+    "vat": 8.64,
+    "orderNumber": "ORD-253822",
+    "__v": 0
+},
+{
+    "shippingAddress": {
+        "street": "Zzmm",
+        "number": "Bbb",
+        "zipCode": "12345",
+        "city": "Th"
+    },
+    "_id": "67f7bb7f64ea98b4159442dd",
+    "email": "admin@admin.com",
+    "firstname": "Admin",
+    "lastname": "Nsns",
+    "phonenumber": "0728218212",
+    "orderItem": [
+        {
+            "productId": "67efaaa8202faa3dbb38ec01",
+            "quantity": 1,
+            "_id": "67f7bb7f64ea98b4159442de"
+        }
+    ],
+    "status": "in progress",
+    "createdAt": "2025-04-10T12:37:19.220Z",
+    "updatedAt": "2025-04-10T12:37:19.220Z",
+    "totalPrice": 8,
+    "vat": 0.96,
+    "orderNumber": "ORD-201549",
+    "__v": 0
+},
+{
+    "shippingAddress": {
+        "street": "gatan",
+        "number": "32",
+        "zipCode": "12345",
+        "city": "malmö"
+    },
+    "_id": "67f7bb8564ea98b4159442e1",
+    "email": "fsad@fdas.se",
+    "firstname": "Oztesttttt",
+    "lastname": "ALbayrak",
+    "phonenumber": "0112345676",
+    "orderItem": [
+        {
+            "productId": "67efaaa8202faa3dbb38ec09",
+            "quantity": 1,
+            "_id": "67f7bb8564ea98b4159442e2"
+        },
+        {
+            "productId": "67efaaa8202faa3dbb38ec08",
+            "quantity": 1,
+            "_id": "67f7bb8564ea98b4159442e3"
+        },
+        {
+            "productId": "67efaaa8202faa3dbb38ec0a",
+            "quantity": 2,
+            "_id": "67f7bb8564ea98b4159442e4"
+        },
+        {
+            "productId": "67efaaa8202faa3dbb38ec0c",
+            "quantity": 4,
+            "_id": "67f7bb8564ea98b4159442e5"
+        }
+    ],
+    "status": "in progress",
+    "createdAt": "2025-04-10T12:37:25.999Z",
+    "updatedAt": "2025-04-10T12:37:25.999Z",
+    "totalPrice": 72,
+    "vat": 8.64,
+    "orderNumber": "ORD-573374",
+    "__v": 0
+},
+{
+    "shippingAddress": {
+        "street": "Bäverbäcksgränd",
+        "number": "1234567",
+        "zipCode": "21212",
+        "city": "Kiruna"
+    },
+    "_id": "67f7bbb4e667f199e1c80f2f",
+    "email": "user@user.com",
+    "firstname": "Mulle",
+    "lastname": "Meck",
+    "phonenumber": "0542134521",
+    "orderItem": [
+        {
+            "productId": "67efaaa8202faa3dbb38ec05",
+            "quantity": 3,
+            "_id": "67f7bbb4e667f199e1c80f30"
+        },
+        {
+            "productId": "67efaaa8202faa3dbb38ec06",
+            "quantity": 3,
+            "_id": "67f7bbb4e667f199e1c80f31"
+        },
+        {
+            "productId": "67efaaa8202faa3dbb38ec0a",
+            "quantity": 2,
+            "_id": "67f7bbb4e667f199e1c80f32"
+        }
+    ],
+    "status": "in progress",
+    "createdAt": "2025-04-10T12:38:12.518Z",
+    "updatedAt": "2025-04-10T12:38:12.518Z",
+    "totalPrice": 120,
+    "vat": 14.4,
+    "orderNumber": "ORD-660427",
+    "__v": 0
+}
