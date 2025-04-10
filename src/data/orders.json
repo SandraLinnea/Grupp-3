@@ -22,13 +22,7 @@
                 "quantity": 4,
                 "_id": "67f7babc64ea98b4159440cf"
             }
-        ],
-        "status": "in progress",
-        "createdAt": "2025-04-10T12:34:04.565Z",
-        "updatedAt": "2025-04-10T12:34:04.565Z",
-        "totalPrice": 72,
-        "vat": 8.64,
-        "orderNumber": "ORD-253822"
+        ]
     },
     {
         "shippingAddress": {
@@ -48,13 +42,7 @@
                 "quantity": 1,
                 "_id": "67f7bb7f64ea98b4159442de"
             }
-        ],
-        "status": "in progress",
-        "createdAt": "2025-04-10T12:37:19.220Z",
-        "updatedAt": "2025-04-10T12:37:19.220Z",
-        "totalPrice": 8,
-        "vat": 0.96,
-        "orderNumber": "ORD-201549"
+        ]
     },
     {
         "shippingAddress": {
@@ -89,13 +77,7 @@
                 "quantity": 4,
                 "_id": "67f7bb8564ea98b4159442e5"
             }
-        ],
-        "status": "in progress",
-        "createdAt": "2025-04-10T12:37:25.999Z",
-        "updatedAt": "2025-04-10T12:37:25.999Z",
-        "totalPrice": 72,
-        "vat": 8.64,
-        "orderNumber": "ORD-573374"
+        ]
     },
     {
         "shippingAddress": {
@@ -125,12 +107,6 @@
                 "quantity": 2,
                 "_id": "67f7bbb4e667f199e1c80f32"
             }
-        ],
-        "status": "in progress",
-        "createdAt": "2025-04-10T12:38:12.518Z",
-        "updatedAt": "2025-04-10T12:38:12.518Z",
-        "totalPrice": 120,
-        "vat": 14.4,
-        "orderNumber": "ORD-660427"
+        ]
     }
 ]
