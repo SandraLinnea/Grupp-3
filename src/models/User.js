@@ -6,13 +6,13 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     trim: true,
-    match: /^[A-Za-zåäöÅÄÖ]+$/
+    match: /^[A-Za-zåäöÅÄÖ\-]+$/
   },
   lastName: {
     type: String,
     required: true,
     trim: true,
-    match: /^[A-Za-zåäöÅÄÖ]+$/
+    match: /^[A-Za-zåäöÅÄÖ\-]+$/
   },
   email: {
     type: String,
