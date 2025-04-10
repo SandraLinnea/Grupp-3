@@ -1,106 +1,6 @@
 [
     {
         "shippingAddress": {
-            "street": "Tomtegatan",
-            "number": "12",
-            "zipCode": "12345",
-            "city": "Örebro"
-        },
-        "_id": "67f7b61e36bf4b499fbe278e",
-        "email": "user@user.com",
-        "firstname": "Jeppe",
-        "lastname": "Nisse",
-        "phonenumber": "0760171007",
-        "orderItem": [
-            {
-                "productId": "67efaaa8202faa3dbb38ec03",
-                "quantity": 1,
-                "_id": "67f7b61e36bf4b499fbe278f"
-            },
-            {
-                "productId": "67efaaa8202faa3dbb38ec02",
-                "quantity": 1,
-                "_id": "67f7b61e36bf4b499fbe2790"
-            },
-            {
-                "productId": "67efaaa8202faa3dbb38ec04",
-                "quantity": 1,
-                "_id": "67f7b61e36bf4b499fbe2791"
-            }
-        ]
-    },
-    {
-        "shippingAddress": {
-            "street": "Testgatan",
-            "number": "2",
-            "zipCode": "12335",
-            "city": "Tyresö"
-        },
-        "_id": "67f7b63c4fafde59aa47f0f7",
-        "email": "admin@hotmail.com",
-        "firstname": "Mimmi",
-        "lastname": "Gibbs",
-        "phonenumber": "0737024235",
-        "orderItem": [
-            {
-                "productId": "67efaaa8202faa3dbb38ec01",
-                "quantity": 2,
-                "_id": "67f7b63c4fafde59aa47f0f8"
-            },
-            {
-                "productId": "67efaaa8202faa3dbb38ec02",
-                "quantity": 1,
-                "_id": "67f7b63c4fafde59aa47f0f9"
-            }
-        ]
-    },
-    {
-        "shippingAddress": {
-            "street": "Bäverväcksgränd",
-            "number": "12",
-            "zipCode": "12462",
-            "city": "Rättvik"
-        },
-        "_id": "67f7b6b6170348cd07dbe328",
-        "email": "admin@admin.com",
-        "firstname": "Hej",
-        "lastname": "Svej",
-        "phonenumber": "0372174125",
-        "orderItem": [
-            {
-                "productId": "67efaaa8202faa3dbb38ec18",
-                "quantity": 3,
-                "_id": "67f7b6b6170348cd07dbe329"
-            }
-        ]
-    },
-    {
-        "shippingAddress": {
-            "street": "Testgatan",
-            "number": "1",
-            "zipCode": "13543",
-            "city": "Tyresö"
-        },
-        "_id": "67f7ba903cee87f24564a044",
-        "email": "admin@admin.com",
-        "firstname": "Mimmi",
-        "lastname": "Gibbs",
-        "phonenumber": "0737024236",
-        "orderItem": [
-            {
-                "productId": "67efaaa8202faa3dbb38ec01",
-                "quantity": 2,
-                "_id": "67f7ba903cee87f24564a045"
-            },
-            {
-                "productId": "67efaaa8202faa3dbb38ec05",
-                "quantity": 4,
-                "_id": "67f7ba903cee87f24564a046"
-            }
-        ]
-    },
-    {
-        "shippingAddress": {
             "street": "agsagasg",
             "number": "12",
             "zipCode": "12345",
@@ -122,7 +22,13 @@
                 "quantity": 4,
                 "_id": "67f7babc64ea98b4159440cf"
             }
-        ]
+        ],
+        "status": "in progress",
+        "createdAt": "2025-04-10T12:34:04.565Z",
+        "updatedAt": "2025-04-10T12:34:04.565Z",
+        "totalPrice": 72,
+        "vat": 8.64,
+        "orderNumber": "ORD-253822"
     },
     {
         "shippingAddress": {
@@ -142,7 +48,13 @@
                 "quantity": 1,
                 "_id": "67f7bb7f64ea98b4159442de"
             }
-        ]
+        ],
+        "status": "in progress",
+        "createdAt": "2025-04-10T12:37:19.220Z",
+        "updatedAt": "2025-04-10T12:37:19.220Z",
+        "totalPrice": 8,
+        "vat": 0.96,
+        "orderNumber": "ORD-201549"
     },
     {
         "shippingAddress": {
@@ -177,7 +89,13 @@
                 "quantity": 4,
                 "_id": "67f7bb8564ea98b4159442e5"
             }
-        ]
+        ],
+        "status": "in progress",
+        "createdAt": "2025-04-10T12:37:25.999Z",
+        "updatedAt": "2025-04-10T12:37:25.999Z",
+        "totalPrice": 72,
+        "vat": 8.64,
+        "orderNumber": "ORD-573374"
     },
     {
         "shippingAddress": {
@@ -207,6 +125,12 @@
                 "quantity": 2,
                 "_id": "67f7bbb4e667f199e1c80f32"
             }
-        ]
+        ],
+        "status": "in progress",
+        "createdAt": "2025-04-10T12:38:12.518Z",
+        "updatedAt": "2025-04-10T12:38:12.518Z",
+        "totalPrice": 120,
+        "vat": 14.4,
+        "orderNumber": "ORD-660427"
     }
 ]
