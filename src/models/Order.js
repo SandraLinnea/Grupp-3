@@ -1,10 +1,10 @@
 import mongoose from 'mongoose';
 
 const orderSchema = new mongoose.Schema({
-    user: { 
+    /*user: { 
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'User',
-      },
+      },*/
     email: {
         type: String,
         required: true,
@@ -43,11 +43,9 @@ const orderSchema = new mongoose.Schema({
     ],
     totalPrice: {
         type: Number,
-        required: true
     },
     vat: {
         type: Number,
-        required: true
     },
     orderNumber: {
         type: String,

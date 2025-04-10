@@ -1,26 +1,107 @@
 import express from 'express';
 import Order from '../models/Order.js';
+import Product from '../models/Product.js';
 import { adminAuth } from '../middleware/auth.js';
-// import mongoose from 'mongoose';
-// import Product from '../models/Product.js';
 
 const router = express.Router();
 
 // Hämta alla ordrar (endast admin)
 router.get("/", adminAuth, async (req, res) => {
-  try {
-    const orders = await Order.find()
+    try {
+      const orders = await Order.find()
+  
+  
+      return res.json(orders);
+    } catch (error) {
+      console.error('Fel vid hämtning av ordrar:', error);
+      res.status(500).json({ error: 'Kunde inte hämta ordrar' });
+    }
+  });
 
-    
-    return res.json(orders);
+  // Create product (admin only)
+  router.post("/", async (req, res) => {
+    try {
+      const order = new Order(req.body);
+      await order.save();
+      res.status(201).json(order);
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  });
+
+/*// Skapa en ny order
+router.post("/", async (req, res) => {
+  try {
+    const { 
+      email, 
+      firstname, 
+      lastname, 
+      phonenumber, 
+      shippingAddress, 
+      orderItem 
+    } = req.body;
+
+    // Validera orderItems och beräkna totalpris
+    if (!Array.isArray(orderItem) || orderItem.length === 0) {
+      return res.status(400).json({ error: 'Ordern måste innehålla minst en produkt' });
+    }
+
+    let totalPrice = 0;
+
+    // Kontrollera att alla produkter finns och har tillräckligt lager
+    for (const item of orderItem) {
+      const product = await Product.findById(item.productId);
+      
+      if (!product) {
+        return res.status(404).json({ error: `Produkt med ID ${item.productId} hittades inte` });
+      }
+
+      // Kontrollera om det finns tillräckligt med lager
+      if (product.stock < item.quantity) {
+        return res.status(400).json({ error: `Inte tillräckligt i lager för ${product.name}` });
+      }
+
+      // Beräkna totalpriset
+      totalPrice += product.price * item.quantity;
+    }
+
+    // Skapa ny order
+    const order = new Order({
+      user: req.userId, // Se till att du hanterar användaren rätt här
+      email,
+      firstname,
+      lastname,
+      phonenumber,
+      shippingAddress,
+      orderItem,
+      totalPrice, // Lägg till totalpriset
+      status: 'in progress'
+    });
+
+    // Spara ordern i databasen
+    await order.save();
+
+    // Uppdatera lager för varje produkt
+    for (const item of orderItem) {
+      const product = await Product.findById(item.productId);
+      
+      // Minska lagret för varje produkt som beställts
+      await Product.findByIdAndUpdate(item.productId, {
+        $inc: { stock: -item.quantity }
+      });
+    }
+
+    res.status(201).json(order);
+
   } catch (error) {
-    console.error('Fel vid hämtning av ordrar:', error);
-    res.status(500).json({ error: 'Kunde inte hämta ordrar' });
+    console.error('Fel vid skapande av order:', error);
+    res.status(400).json({ error: error.message });
   }
 });
 
 
-/*// Get all products
+
+/// Get all products
 router.get("/", async (req, res) => {
   try {
     const orders = await Order.find();
