@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import Product from './Product.js'
 
 const orderSchema = new mongoose.Schema({
     /*user: { 
@@ -39,7 +40,6 @@ const orderSchema = new mongoose.Schema({
           productId: { type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true },
           product: { type: String, required: true },
           quantity: { type: Number, required: true },
-          price: { type: Number, required: true }
         }
     ],
     totalPrice: {
@@ -59,12 +59,22 @@ const orderSchema = new mongoose.Schema({
     },
 }, {timestamps: true});
 
-orderSchema.pre('save', function (next) {
+orderSchema.pre('save', async function (next) {
     if (this.orderItem && this.orderItem.length > 0) {
+        let products = await Promise.all(this.orderItem.map(orderItem => {
+            return Product.findById(orderItem.productId)
+        }))
+        products = products.filter(p => !!p)
+        console.log(products)
       const total = this.orderItem.reduce((sum, item) => {
-        return sum + item.price * item.quantity;
+        const product = products.find(p => p._if = item.productId)
+        if(!product){
+            return sum
+        }
+        return sum + product.price * item.quantity;
       }, 0);
       this.totalPrice = total;
+      console.log("Total", total)
       this.vat = Number((total * 0.12).toFixed(2));
     }
     if (!this.orderNumber) {
