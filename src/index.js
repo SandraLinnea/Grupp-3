@@ -38,11 +38,7 @@ app.get('/api', (req, res) => {
       },
       orders: {
         "GET /api/orders": "Get all orders (Admin only)",
-        "GET /api/orders/:id": "Get a specific order",
-        "GET /api/orders/user/myorders": "Get current user's orders",
         "POST /api/orders": "Create a new order",
-        "PUT /api/orders/:id/status": "Update order status (Admin only)",
-        "PUT /api/orders/:id/cancel": "Cancel order",
       }
     },
     authentication: "Use Bearer token in Authorization header for protected routes"
