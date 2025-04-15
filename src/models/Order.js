@@ -10,25 +10,25 @@ const orderSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true,
-        match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
     },
     firstname: {
         type: String,
         required: true,
         trim: true,
-        match: /^[A-Za-zåäöÅÄÖ]+$/
+        match: /^[A-Za-zåäöÅÄÖ]+$/,
     },
     lastname: {
         type: String,
         required: true,
         trim: true,
-        match: /^[A-Za-zåäöÅÄÖ]+$/
+        match: /^[A-Za-zåäöÅÄÖ]+$/,
     },
     phonenumber: {
         type: String,
         required: true,
-        match: /^\d{6,10}$/
-    },
+        match: [/^\d{6,10}$/, 'Telefonnummer måste vara 6 till 10 siffror'],
+      },      
     shippingAddress: {
         street: { type: String, required: true, match: /^[A-Za-zåäöÅÄÖ0-9\s]+$/ },
         number: { type: String, required: true,match: /^[A-Za-z0-9]+$/ },    

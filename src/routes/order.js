@@ -20,10 +20,14 @@ router.get("/", adminAuth, async (req, res) => {
   // Create order
   router.post("/", async (req, res) => {
     try {
+      console.log(" Mottagen body:", req.body);
+
       const order = new Order(req.body);
       await order.save();
       res.status(201).json(order);
     } catch (error) {
+
+      console.error(" Fel vid sparning av order:", error);
       res.status(400).json({ error: error.message });
     }
   });
