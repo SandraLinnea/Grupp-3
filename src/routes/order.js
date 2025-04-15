@@ -9,7 +9,6 @@ router.get("/", adminAuth, async (req, res) => {
     try {
       const orders = await Order.find()
   
-  
       return res.json(orders);
     } catch (error) {
       console.error('Fel vid hämtning av ordrar:', error);
@@ -23,11 +22,12 @@ router.get("/", adminAuth, async (req, res) => {
       console.log(" Mottagen body:", req.body);
 
       const order = new Order(req.body);
+
       await order.save();
       res.status(201).json(order);
     } catch (error) {
-
       console.error(" Fel vid sparning av order:", error);
+      
       res.status(400).json({ error: error.message });
     }
   });
