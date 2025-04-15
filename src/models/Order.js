@@ -27,7 +27,7 @@ const orderSchema = new mongoose.Schema({
     phonenumber: {
         type: String,
         required: true,
-        match: /^\d{10}$/
+        match: /^\d{6,10}$/
     },
     shippingAddress: {
         street: { type: String, required: true, match: /^[A-Za-zåäöÅÄÖ0-9\s]+$/ },
