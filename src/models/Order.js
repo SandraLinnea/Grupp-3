@@ -2,10 +2,6 @@ import mongoose from 'mongoose';
 import Product from './Product.js'
 
 const orderSchema = new mongoose.Schema({
-    /*user: { 
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'User',
-      },*/
     email: {
         type: String,
         required: true,
@@ -27,8 +23,8 @@ const orderSchema = new mongoose.Schema({
     phonenumber: {
         type: String,
         required: true,
-        match: /^\d{6,10}$/
-      },      
+        match: /^\d{10}$/,
+      },    
     shippingAddress: {
         street: { type: String, required: true, match: /^[A-Za-zåäöÅÄÖ0-9\s]+$/ },
         number: { type: String, required: true,match: /^[A-Za-z0-9]+$/ },    
@@ -38,7 +34,6 @@ const orderSchema = new mongoose.Schema({
     orderItem: [
         {
           productId: { type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true },
-          // product: { type: String, required: true },
           quantity: { type: Number, required: true },
         }
     ],
